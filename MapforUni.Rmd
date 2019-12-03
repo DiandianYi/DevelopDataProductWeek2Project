@@ -1,0 +1,28 @@
+---
+title: "Map of Universities in Amsterdam"
+author: "Diandian Yi"
+date: "12/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Summary
+
+I collected the latitude and the longitude for the universities in Amsterdam on <https://www.latlong.net/>.
+
+```{r, include=TRUE}
+library(leaflet)
+
+uniAmsLatLong <- data.frame(
+lat = c(52.3558,52.3338,52.3459,52.3420,52.3758,52.2217,52.3549), lng = c(4.9557,4.8657,4.9165,4.8598,4.9092,4.5359,4.9512))
+
+uniAmsName <- c("University of Amsterdam","Vrije Universiteit Amsterdam","Amsterdam University of Applied Sciences","Gerrit Rietveld Academie","Conservatorium van Amsterdam","Amsterdam School of the Arts","Amsterdam University College")
+
+uniAmsLatLong %>%
+leaflet() %>%
+addTiles() %>%
+addMarkers(popup = uniAmsName,clusterOptions = markerClusterOptions())
+```
